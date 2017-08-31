@@ -6,7 +6,7 @@ import app from '../bin/initial';
 let url = 'http://localhost:3011';
 let sinonStubFetch = sinon.stub(userData, 'find');
  let sinonStubInsert = sinon.stub(userData.prototype, 'save');
-let sinonStubUpdate  =  sinon.stub(userData.prototype, 'update');
+let sinonStubUpdate  =  sinon.stub(userData, 'update');
 let sinonStubDeletee = sinon.stub(userData, 'remove');
 
 describe('Test fetch data',() =>{
@@ -64,8 +64,8 @@ describe('Update Testing',(done) =>{
 	
         beforeEach(() => {
 		
-		sinonStubUpdate.withArgs({Name : 'Chandra'},
-			{$set : {Address : 'Delhi'}}).yields(null, { ok: 1, nModified: 0, n: 0});
+		sinonStubUpdate.yields(null, { Name : 'Chandra',
+			$set : {Address : 'Delhi'}, ok: 1, nModified: 0, n: 0});
 		
 	    });
      
@@ -89,7 +89,7 @@ describe('Update Testing',(done) =>{
 describe('Delete Testing',(done) =>{
 	 
         beforeEach(() => {
-		sinonStubDeletee.withArgs({ EmpId : 50042935 }).yields(null, {ok:1, nRemoved: 1, n:1});
+		sinonStubDeletee.yields(null, {EmpId : 50042935, ok:1, nRemoved: 1, n:1});
 		
 	    });
 
