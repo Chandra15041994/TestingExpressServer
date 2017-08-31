@@ -1,0 +1,7 @@
+import app from '../app';
+import debugto from 'debug' 
+const debug = debugto('server:server');
+import http from 'http';
+
+http.createServer(app).listen(3011, '127.0.0.1');
+
